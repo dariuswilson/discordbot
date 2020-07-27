@@ -1,10 +1,4 @@
 {
   "prefix": "!",
   "token": "NzM1NzI3MTQzODY2MDczMDk4.XxkfLg.nn-4K7SqwKwSdpTaP-ePntrOlBk",
-  "bot_age": 1,
-  "words_array": ["Hi", "Bye", "This is array"],
-  "bot_info": {
-    "name": "Discord Bot",
-    "version": 1.0
-  }
-}
+  };
