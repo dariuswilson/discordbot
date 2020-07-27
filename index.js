@@ -1,40 +1,44 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
-const fs = require('fs');
+const bot = new Discord.Client();
 const Enmap = require('enmap');
-const { prefix } = require('./config.json');
+const config = require('./config.json');
+const fs = require('fs');
+const { brotliCompress } = require('zlib');
+require('./util/eventHandler')(bot);
+bot.commands = new Discord.Collection();
+bot.aliases = new Discord.Collection();
+bot.commands = new Enmap();
 
-client.commands = new Enmap();
+fs.readdir('./commands/', (err, files) => {
+	if(err) console.log(err)
 
+	let jsfile = files.filter(f => f.split(".".toUpperCase() === "js"));
+	if(jsfile.length <= 0) {
+		// eslint-disable-next-line quotes
+		return console.log("[LOGS] Couldn't Find Commands!");
+	}
 
-client.once('ready', ()=> {
-	console.log(`Logged in as ${client.user.tag}!`);
-});
-
-client.on('message', message => {
-
-	if (message.author.bot) return;
-	if (message.content.indexOf(prefix) !== 0) return;
-
-	const args = message.content.slice(prefix.length).trim().split(/ + /g);
-	const command = args.shift().toLowerCase();
-
-	const cmd = client.commands.get(command);
-	if (!cmd) return;
-
-	cmd.run(client, message, args);
-});
-
-// Everything above can be editted.
-fs.readdir('./commands/', async (err, files) => {
-	if (err) return console.error;
-	files.forEach(file => {
-		if (!file.endsWith('.js')) return;
-		const props = require(`./commands/${file}`);
-		const cmdName = file.split('.')[0];
-		console.log(`Loaded command  '${cmdName}'.`);
-		client.commands.set(cmdName, props);
+	jsfile.forEach((f, i) => {
+		let pull = require(`./commands/${f}`);
+		bot.commands.set(pull.config.name, pull);
+		pull.config.aliases.forEach(alias => {
+			bot.aliases.set(alias, pull.config.name);
+		});
 	});
 });
 
-client.login(process.env.token);
+bot.on('message', async message => {
+	if(message.author.bot || message.channel.type === "dm") return;
+
+	let prefix = config.prefix;
+	let messageArray = message.content.split(" ");
+	let cmd = messageArray[0];
+	let args = messageArray.slice(1);
+
+	if(!message.content.startsWith(prefix)) return;
+	let commandfile = bot.commands.get(cmd.slice(prefix.length)) || brotliCompress.commands.get(bot.aliases.get(cmd.slice(prefix.length)));
+	if(commandfile) commandfile.run(bot, message, args);
+});
+
+
+bot.login(process.env.token);
