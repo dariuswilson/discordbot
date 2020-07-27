@@ -7,7 +7,6 @@ const { brotliCompress } = require('zlib');
 require('./util/eventHandler')(bot);
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
-bot.commands = new Enmap();
 
 fs.readdir('./commands/', (err, files) => {
 
