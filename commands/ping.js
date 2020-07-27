@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const botconfig = require('../config.json');
+const botconfig = require('../botsettings.json');
 
 module.exports.run = async (bot, message, args) => {
 	return message.channel.send("Pong!");
