@@ -3,8 +3,11 @@ const client = new Discord.Client();
 const fs = require('fs');
 const Enmap = require('enmap');
 const { prefix } = require('./config.json');
+const mongoose = require('mongoose');
 
 client.commands = new Enmap();
+
+mongoose.connect('mongodb+srv://Darius:oldspice123@discordbot.3bz6j.mongodb.net/Data', { userNewUrlParser: true, useUnifiedTopology: true});
 
 client.once('ready', ()=> {
 	console.log(`Logged in as ${client.user.tag}!`);
