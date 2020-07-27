@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
-const bot = new Discord.Client();
+const bot = new Discord.Client({disableEveryone: true});
 const Enmap = require('enmap');
-const config = require('./config.json');
+const botsettings = require('./botsettings.json');
 const fs = require('fs');
 const { brotliCompress } = require('zlib');
 require('./util/eventHandler')(bot);
@@ -30,7 +30,7 @@ fs.readdir('./commands/', (err, files) => {
 bot.on('message', async message => {
 	if(message.author.bot || message.channel.type === 'dm') return;
 
-	const prefix = config.prefix;
+	const prefix = botsettings.prefix;
 	const messageArray = message.content.split(' ');
 	const cmd = messageArray[0];
 	const args = message.content.substring(message.content.indexOf(' ') + 1);
