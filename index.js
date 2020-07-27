@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 
 client.commands = new Enmap();
 
-mongoose.connect('mongodb+srv://Darius:oldspice123@discordbot.3bz6j.mongodb.net/Data', { userNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://Darius:oldspice123@discordbot.3bz6j.mongodb.net/Data', { userNewUrlParser: true, useUnifiedTopology: true });
 
 client.once('ready', ()=> {
 	console.log(`Logged in as ${client.user.tag}!`);
