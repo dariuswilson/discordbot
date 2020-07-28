@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 const botsettings = require('./botsettings.json');
 const fs = require('fs');
+const { prefix } = require('./botsettings.json')
 const { brotliCompress } = require('zlib');
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://Darius:oldspice123@discordbot.3bz6j.mongodb.net/Data', { useNewUrlParser: true, useUnifiedTopology: true });
