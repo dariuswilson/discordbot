@@ -1,43 +1,35 @@
 const Discord = require('discord.js');
-const bot = new Discord.Client({disableEveryone: true});
+const bot = new Discord.Client();
 const botsettings = require('./botsettings.json');
 const fs = require('fs');
 const { brotliCompress } = require('zlib');
-require('./util/eventHandler')(bot);
-bot.commands = new Discord.Collection();
-bot.aliases = new Discord.Collection();
+const mongoose = require('mongoose');
+mongoose.connect('mongodb+srv://Darius:oldspice123@discordbot.3bz6j.mongodb.net/Data', { useNewUrlParser: true, useUnifiedTopology: true });
 
-fs.readdir('./commands/', (err, files) => {
+client.commands = new Discord.Collection();
 
-	if(err) console.log(err);
+const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
+for(const file of commandFiles) {
+	const command = require(`./commands/${file}`);
 
-	const jsfile = files.filter(f => f.split('.').pop() === 'js');
-	if(jsfile.length <= 0) {
-		return console.log('[LOGS] Couldn\'t Find Commands!');
+	client.commands.set(command.name, command);
+}
+
+
+bot.once('ready', () => { 
+	console.log('I am online!');
+});
+
+bot.on('message', message => {
+	if(!message.content.startsWith(prefix) || message.author.bot) return;
+
+	const args = message.content.slice(prefix.length).split(/ +/);
+	const command = args.shift().toLowerCase();
+
+	if(command === 'ping') {
+		client.commands.get('ping').execute(message, args);
 	}
-
-	jsfile.forEach((f, i) => {
-		const pull = require(`./commands/${f}`);
-		bot.commands.set(pull.config.name, pull);
-		pull.config.aliases.forEach(alias => {
-			bot.aliases.set(alias, pull.config.name);
-		});
-	});
-});
-
-bot.on('message', async message => {
-	if(message.author.bot || message.channel.type === 'dm') return;
-
-	const prefix = botsettings.prefix;
-	const messageArray = message.content.split(' ');
-	const cmd = messageArray[0];
-	const args = message.content.substring(message.content.indexOf(' ') + 1);
-
-	if(!message.content.startsWith(prefix)) return;
-	const commandfile = bot.commands.get(cmd.slice(prefix.length)) || bot.commands.get(bot.aliases.get(cmd.slice(prefix.length)));
-	if(commandfile) commandfile.run(bot, message, args);
-
-});
+})
 
 
 bot.login(process.env.token);
