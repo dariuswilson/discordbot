@@ -17,7 +17,7 @@ init: () => {
     mongoose.Promise = global.Promise;
 
     mongoose.connection.on('connected', () => 
-    console.log('Mongoose hassuccessfully connected!');
+    console.log('Mongoose has successfully connected!'));
 
     mongoose.connection.on('err', err =>
     console.log(`Mongoose connection error: \n${err.stack}`));
