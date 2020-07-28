@@ -31,7 +31,7 @@ client.commands = new Discord.Collection();
 // }
 // connectToMongoDB()
 
-READ COMMMANDS FOLDER
+//READ COMMMANDS FOLDER
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 for(const file of commandFiles) {
 	const command = require(`./commands/${file}`);
