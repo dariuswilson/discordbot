@@ -1,14 +1,14 @@
+// PACKAGES AND FILES
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const botsettings = require('./botsettings.json');
 const fs = require('fs');
 const { prefix } = require('./botsettings.json')
 const { brotliCompress } = require('zlib');
-const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://Darius:oldspice123@discordbot.3bz6j.mongodb.net/Data', { useNewUrlParser: true, useUnifiedTopology: true });
 
 client.commands = new Discord.Collection();
 
+// READ COMMMANDS FOLDER
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 for(const file of commandFiles) {
 	const command = require(`./commands/${file}`);
@@ -16,7 +16,7 @@ for(const file of commandFiles) {
 	client.commands.set(command.name, command);
 }
 
-
+// BOT ONLINE MESSAGE AND ACTIVITY MESSAGE
 client.once('ready', () => { 
 	console.log('I am online!');
 });
