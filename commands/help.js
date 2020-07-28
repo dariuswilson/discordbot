@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 
 module.exports = {
-	commands: ['!help'],
+	commands: ['help'],
 	expectedArgs: '',
 	permissionError: '',
 	minArgs: 0,

@@ -1,5 +1,5 @@
 module.exports = {
-	commands: ['!ping'],
+	commands: ['ping'],
 	expectedArgs: '',
 	permissionError: '',
 	minArgs: 0,
