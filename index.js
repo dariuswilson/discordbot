@@ -6,7 +6,7 @@ const { brotliCompress } = require('zlib');
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://Darius:oldspice123@discordbot.3bz6j.mongodb.net/Data', { useNewUrlParser: true, useUnifiedTopology: true });
 
-client.commands = new Discord.Collection();
+bot.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 for(const file of commandFiles) {
