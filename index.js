@@ -1,14 +1,26 @@
 // PACKAGES AND FILES
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const botsettings = require('./botsettings.json');
+const botsettings = require('./config.json');
 const fs = require('fs');
-const { prefix } = require('./botsettings.json')
+const { prefix } = require('./config.json')
 const { brotliCompress } = require('zlib');
 const nodemon = require('nodemon');
-
 client.commands = new Discord.Collection();
-client.mongoose = require('./utils/mongoose');
+
+// MONGODB
+const mongo = require('./mongo');
+
+const connectToMongoDB = async () => {
+	await mongo().then((mongoose) => {
+	try {
+		console.log('Connected to MongoDB!');
+	} finally {
+		Mongoose.connection.close()
+	}
+})
+}
+connectToMongoDB()
 
 // READ COMMMANDS FOLDER
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -40,5 +52,4 @@ client.on('message', message => {
 	}
 });
 
-client.mongoose.init();
 client.login(process.env.token);
