@@ -9,21 +9,6 @@ const nodemon = require('nodemon');
 client.commands = new Discord.Collection();
 const path = require('path')
 
-// MONGODB
-const mongo = require('./mongo');
-const profileSchema = require('./schemas/profile-schema')
-
-const connectToMongoDB = async () => {
-	await mongo().then(async (mongoose) => {
-	try {
-		console.log('Connected to MongoDB!')
-	} finally {
-		mongoose.connection.close()
-	}
-})
-}
-connectToMongoDB()
-
 //READ COMMMANDS FOLDER
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 for(const file of commandFiles) {
@@ -64,19 +49,6 @@ readCommands('commands')
 
 client.on('message', message => {
 	if(!message.content.startsWith(prefix) || message.author.bot) return;
-
-	const args = message.content.slice(prefix.length).split(/ +/);
-	const command = args.shift().toLowerCase();
-
-	if(command === 'ping') {
-		client.commands.get('ping').execute(message, args);
-	} else if (command === 'server') {
-		client.commands.get('server').execute(message, args);
-	} else if (command === 'seatgeek') {
-		client.commands.get('seatgeek').execute(message,args);
-    } else if (command === 'help') {
-        client.commands.get('help').execute(message, args);
-  };
 });
 
 client.login(process.env.token)
