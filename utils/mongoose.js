@@ -21,7 +21,7 @@ init: () => {
 
     mongoose.connection.on('err', err =>
     console.log(`Mongoose connection error: \n${err.stack}`));
-    });
+    };
 
     mongoose.connection.on('disconnected', ()=> 
     console.warn('Mongoose connection lost');
