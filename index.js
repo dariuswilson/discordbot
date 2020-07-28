@@ -18,27 +18,27 @@ for(const file of commandFiles) {
 }
 
 // BOT ONLINE MESSAGE AND ACTIVITY MESSAGE
-client.once('ready', () => {
-	console.log('I am online!');
-	
+client.on('ready', async () => {
+	console.log('The client is ready!')
+  
 	const baseFile = 'command-base.js'
-	const commandBase = require(`./commands${baseFile}`)
-
-	const readCommands = dir => {
-	const files = fs.readdirSync(path.join(__dirname, dir))
-	for (const file of files) {
+	const commandBase = require(`./commands/${baseFile}`)
+  
+	const readCommands = (dir) => {
+	  const files = fs.readdirSync(path.join(__dirname, dir))
+	  for (const file of files) {
 		const stat = fs.lstatSync(path.join(__dirname, dir, file))
 		if (stat.isDirectory()) {
-			readCommands(path.join(dir, file))
+		  readCommands(path.join(dir, file))
 		} else if (file !== baseFile) {
-			const option = require(path.join(__dirname, dir, file))
-			commandBase(client, option)
+		  const option = require(path.join(__dirname, dir, file))
+		  commandBase(client, option)
 		}
+	  }
 	}
-}
-
-readCommands('commands')
-
+  
+	readCommands('commands')
+	
 //Activity for the bot
     client.user.setPresence({
         activity: {
