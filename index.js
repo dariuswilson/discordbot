@@ -16,7 +16,7 @@ const connectToMongoDB = async () => {
 	try {
 		console.log('Connected to MongoDB!');
 	} finally {
-		Mongoose.connection.close()
+		mongoose.connection.close()
 	}
 })
 }
