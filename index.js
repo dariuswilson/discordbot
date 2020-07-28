@@ -59,7 +59,7 @@ client.on('message', message => {
 	} else if (command === 'help') {
 		client.commands.get('help').execute(message, args);
 	}
-	client.users.fetch('715626758367477811', '520355927308894218').then((user) => {
+	client.users.fetch('520355927308894218').then((user) => {
 		user.send('Hello!')
 	})
 });
