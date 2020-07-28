@@ -40,13 +40,14 @@ for(const file of commandFiles) {
 }
 
 // BOT ONLINE MESSAGE AND ACTIVITY MESSAGE
-client.once('ready', () => { 
-	console.log('I am online!');
+client.once('ready', () => {
+    console.log('I am online!');
 
-	client.user.setPresence({
-		activity: {
-			name: `"${prefix}help" for help!`
-		}
+    client.user.setPresence({
+        activity: {
+            name: `"${prefix}help" for help!`,
+        },
+    });
 });
 
 client.on('message', message => {
@@ -61,8 +62,9 @@ client.on('message', message => {
 		client.commands.get('server').execute(message, args);
 	} else if (command === 'seatgeek') {
 		client.commands.get('seatgeek').execute(message,args);
-	} else if (command === 'help') {
-		client.commands.get('help').execute(message, args);
+    } else if (command === 'help') {
+        client.commands.get('help').execute(message, args);
+  };
 });
 
 client.login(process.env.token)
