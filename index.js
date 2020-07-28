@@ -59,9 +59,12 @@ client.on('message', message => {
 	} else if (command === 'help') {
 		client.commands.get('help').execute(message, args);
 	}
-	client.users.fetch('520355927308894218').then((user) => {
-		user.send('Hello!')
+	client.user.setPresence({
+		activity: {
+			name: `"${prefix}help" for help!`
+		}
 	})
-});
+	});
+
 
 client.login(process.env.token);
