@@ -5,8 +5,10 @@ const botsettings = require('./botsettings.json');
 const fs = require('fs');
 const { prefix } = require('./botsettings.json')
 const { brotliCompress } = require('zlib');
+const nodemon = require('nodemon');
 
 client.commands = new Discord.Collection();
+client.mongoose = require('./utils/mongoose');
 
 // READ COMMMANDS FOLDER
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -38,5 +40,5 @@ client.on('message', message => {
 	}
 });
 
-
+client.mongoose.init();
 client.login(process.env.token);

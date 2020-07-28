@@ -10,5 +10,6 @@ module.exports = {
 		.setDescription('Information about this beautiful server!')
 		.addField("Server Name:", `${message.guild.name}`)
 		.addField("Total Members:",`${message.guild.memberCount}`);
+		message.reply(embed)
 	}
 };
