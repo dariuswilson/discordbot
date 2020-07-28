@@ -9,29 +9,29 @@ const nodemon = require('nodemon');
 client.commands = new Discord.Collection();
 
 // MONGODB
-const mongo = require('./mongo');
-const userSchema = require('./schemas/user-schema')
+// const mongo = require('./mongo');
+// const userSchema = require('./schemas/user-schema')
 
-const connectToMongoDB = async () => {
-	await mongo().then(async (mongoose) => {
-	try {
-		console.log('Connected to MongoDB!')
+// const connectToMongoDB = async () => {
+// 	await mongo().then(async (mongoose) => {
+// 	try {
+// 		console.log('Connected to MongoDB!')
 
-		const user = {
-			email: 'testingteemoo123@gmail.com',
-			username: 'Darius',
-			password: 'PAssword1!'
-		}
+// 		const user = {
+// 			email: 'testingteemoo123@gmail.com',
+// 			username: 'Darius',
+// 			password: 'PAssword1!'
+// 		}
 
-		await new userSchema(user).save()
-	} finally {
-		mongoose.connection.close()
-	}
-})
-}
-connectToMongoDB()
+// 		await new userSchema(user).save()
+// 	} finally {
+// 		mongoose.connection.close()
+// 	}
+// })
+// }
+// connectToMongoDB()
 
-// READ COMMMANDS FOLDER
+READ COMMMANDS FOLDER
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 for(const file of commandFiles) {
 	const command = require(`./commands/${file}`);
