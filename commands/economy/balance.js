@@ -18,7 +18,7 @@ module.exports = {
       .setAuthor(message.member.user.tag)
       .setThumbnail(message.author.avatarURL())
       .setColor(0x00FF00)
-      .setDescripton(`That user has ${coins} coins!`)
+      .setDescription(`That user has ${coins} coins!`);
       message.channel.send(embed)
   },
 }
