@@ -16,9 +16,9 @@ module.exports = {
       const embed = new Discord.MessageEmbed()
       .setAuthor(message.member.user.tag, message.author.avatarURL())
       .setColor(0x00FF00)
-      .setDescription(`You have ${coins}!`);
+      .setDescription(`You have ${coins} coins!`);
       message.channel.send(embed)
-    } else if (!message.author) {
+    } else if (message.mentions.users.first()) {
       const embed = new Discord.MessageEmbed()
       .setAuthor(message.member.user.tag, message.author.avatarURL())
       .setColor(0x00FF00)
