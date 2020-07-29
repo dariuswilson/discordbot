@@ -15,7 +15,7 @@ module.exports = {
     const coins = await economy.getCoins(guildId, userId)
 
     const embed = new Discord.MessageEmbed()
-    .setAuthor(message.member.user.tag, member.author.avatarURL(''))
+      .setAuthor(message.member.user.tag)
     message.reply(`That user has ${coins} coins!`)
   },
 }
