@@ -11,7 +11,8 @@ module.exports = {
     const userId = target.id
 
     const coins = await economy.getCoins(userId)
-    if(message.mentions.first) {
+
+    if(message.author) {
       const embed = new Discord.MessageEmbed()
       .setAuthor(message.member.user.tag, message.author.avatarURL())
       .setColor(0x00FF00)
