@@ -16,7 +16,7 @@ module.exports = {
 
     const embed = new Discord.MessageEmbed()
       .setAuthor(message.member.user.tag)
-      .setThumbnail(message.author.avatarURL())
+      .setImage(message.author.avatarURL())
       .setColor(0x00FF00)
       .setDescription(`That user has ${coins} coins!`);
       message.channel.send(embed)
