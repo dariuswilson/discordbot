@@ -23,7 +23,7 @@ module.exports = {
 
     const userId = mention.id
 
-    const newCoins = await economy.addCoins(guildId, userId, coins)
+    const newCoins = await economy.addCoins(userId, coins)
 
     message.reply(
       `You have given <@${userId}> ${coins} coin(s). They now have ${newCoins} coin(s)!`
