@@ -9,14 +9,11 @@ module.exports = {
     const target = message.mentions.users.first() || message.author
     const targetId = target.id
 
-    const guildId = message.guild.id
     const userId = target.id
 
-    const coins = await economy.getCoins(guildId, userId)
-
+    const coins = await economy.getCoins(userId)
     const embed = new Discord.MessageEmbed()
-      .setAuthor(message.member.user.tag)
-      .setImage(message.author.avatarURL())
+      .setAuthor(message.member.user.tag, message.author.avatarURL())
       .setColor(0x00FF00)
       .setDescription(`That user has ${coins} coins!`);
       message.channel.send(embed)
