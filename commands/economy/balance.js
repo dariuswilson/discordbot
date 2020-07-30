@@ -12,13 +12,13 @@ module.exports = {
 
     const coins = await economy.getCoins(userId)
 
-    if(target) {
+    if(message.mentions.users.first()) {
       const embed = new Discord.MessageEmbed()
       .setAuthor(message.member.user.tag, message.author.avatarURL())
       .setColor(0x00FF00)
       .setDescription(`You have ${coins} coins!`);
       message.channel.send(embed)
-    } else if (!target) {
+    } else {
       const embed = new Discord.MessageEmbed()
       .setAuthor(message.member.user.tag, message.author.avatarURL())
       .setColor(0x00FF00)
