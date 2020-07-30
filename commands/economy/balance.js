@@ -6,7 +6,7 @@ module.exports = {
   maxArgs: 1,
   expectedArgs: "[Target user's @]",
   callback: async (message, args, text) => {
-    if(!message.mentions.user.first()) {
+    if(!message.mentions.users.first()) {
       const userId = message.author.id;
       const coins = await economy.getCoins(userId);
       const embed = new Discord.MessageEmbed()
