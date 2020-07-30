@@ -22,7 +22,7 @@ module.exports = {
       const embed = new Discord.MessageEmbed()
       .setAuthor(message.member.user.tag, message.author.avatarURL())
       .setColor(0x00FF00)
-      .setDescription(`That user has ${coins} coins!`);
+      .setDescription(`${target.tag} has ${coins} coins!`);
       message.channel.send(embed)
       return;
     }
