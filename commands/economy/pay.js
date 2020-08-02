@@ -3,8 +3,6 @@ const Discord = require('discord.js');
 
 module.exports = {
     commands: ['pay'],
-    maxArgs: 1,
-    expectedArgs: "[Target user's @] [Amount of Coins]",
     callback: async (message, args, text) => {
 const economy = require('../../economy')
 const currentAmount = economy.getBalance(message.author.id);
