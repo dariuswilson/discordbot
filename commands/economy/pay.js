@@ -21,3 +21,4 @@ economy.add(transferTarget.id, transferAmount);
 return message.channel.send(`Successfully transferred ${transferAmount}💰 to ${transferTarget.tag}. Your current balance is ${economy.getBalance(message.author.id)}💰`);
     }
 }
+console.log(transferAmount)
