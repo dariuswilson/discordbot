@@ -14,8 +14,8 @@ if (!transferAmount || isNaN(transferAmount)) return message.channel.send(`Sorry
 if (transferAmount > currentAmount) return message.channel.send(`Sorry ${message.author}, you only have ${currentAmount}.`);
 if (transferAmount <= 0) return message.channel.send(`Please enter an amount greater than zero, ${message.author}.`);
 
-currency.add(message.author.id, -transferAmount);
-currency.add(transferTarget.id, transferAmount);
+economy.add(message.author.id, -transferAmount);
+economy.add(transferTarget.id, transferAmount);
 
 return message.channel.send(`Successfully transferred ${transferAmount}💰 to ${transferTarget.tag}. Your current balance is ${currency.getBalance(message.author.id)}💰`);
     }
