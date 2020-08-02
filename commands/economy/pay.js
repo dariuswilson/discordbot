@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const economy = require('../../economy')
 
-const currentAmount = currency.getBalance(message.author.id);
+const currentAmount = economy.getBalance(message.author.id);
 const transferAmount = commandArgs.split(/ +/g).find(arg => !/<@!?\d+>/g.test(arg));
 const transferTarget = message.mentions.users.first();
 
@@ -17,6 +17,6 @@ if (transferAmount <= 0) return message.channel.send(`Please enter an amount gre
 economy.add(message.author.id, -transferAmount);
 economy.add(transferTarget.id, transferAmount);
 
-return message.channel.send(`Successfully transferred ${transferAmount}💰 to ${transferTarget.tag}. Your current balance is ${currency.getBalance(message.author.id)}💰`);
+return message.channel.send(`Successfully transferred ${transferAmount}💰 to ${transferTarget.tag}. Your current balance is ${economy.getBalance(message.author.id)}💰`);
     }
 }
