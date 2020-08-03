@@ -1,4 +1,4 @@
-const mongo = require('mongo.js');
+const mongo = require('./mongo');
 const ms = require('parse-ms');
 
 module.exports = {
@@ -7,7 +7,7 @@ module.exports = {
 	callback: async (message, args, text) => {
 		const timeout = 86400000;
 		const amount = 10;
-		const daily = await db.fetch(`daily_${message.guild.id}_${message.author.id}`);
+		const daily = await mongo.fetch(`daily_${message.guild.id}_${message.author.id}`);
 
 		if(daily !== null && timeout - (Date.now () - daily) > 0) {
 			const time = ms(timeout - (Date.now() - daily));
