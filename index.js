@@ -35,7 +35,7 @@ client.on('ready', async () => {
 		} else if (file !== baseFile) {
 		  const option = require(path.join(__dirname, dir, file));
 		  commandBase(client, option);
-		}};
+}}};
 
 	readCommands('commands');
 
@@ -51,5 +51,5 @@ client.on('ready', async () => {
 	client.on('message', message => {
 		if(!message.content.startsWith(prefix) || message.author.bot) return;
 	});
-});
-client.login(process.env.token);
+
+client.login(process.env.token)

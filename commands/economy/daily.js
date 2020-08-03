@@ -6,17 +6,13 @@ module.exports = {
 
 	callback: async (message, args, text) => {
 		const amount = 10;
-		const connectToMongoDB = async () => {
-			await mongo().then(async (mongoose) => {
-				try {
-					console.log('Connected to mongodb!');
-				} finally {
-					mongoose.connection.close();
-				}
-			});
-		};
-
-		connectToMongoDB();
+		await mongo().then(async (mongoose) => {
+			try {
+				console.log('Connected to mongodb!');
+			} finally {
+				mongoose.connection.close();
+			}
+		});
 
 
 		// const timeout = 86400000;
