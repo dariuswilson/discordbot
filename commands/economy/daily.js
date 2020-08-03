@@ -7,7 +7,7 @@ module.exports = {
 	callback: async (message, args, text) => {
 		const timeout = 86400000;
 		const amount = 10;
-
+		const user = message.author;
 		const daily = await db.fetch(`daily_${message.guild.id}_${user.id}`);
 
 		if(daily !== null && timeout - (Date.now () - daily) > 0) {
