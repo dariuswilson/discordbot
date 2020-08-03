@@ -51,6 +51,5 @@ client.on('ready', async () => {
 	client.on('message', message => {
 		if(!message.content.startsWith(prefix) || message.author.bot) return;
 	});
-
-	client.login(process.env.token);
-}
+});
+client.login(process.env.token);
