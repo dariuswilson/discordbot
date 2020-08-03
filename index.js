@@ -35,22 +35,22 @@ client.on('ready', async () => {
 		} else if (file !== baseFile) {
 		  const option = require(path.join(__dirname, dir, file));
 		  commandBase(client, option);
-		}
-	  };
+		}};
 
-readCommands('commands');
-
-
-// Activity for the bot
-client.user.setPresence({
-	activity: {
-		name: `"${prefix}help" for help!`,
-	},
-});
+	readCommands('commands');
 
 
-client.on('message', message => {
-	if(!message.content.startsWith(prefix) || message.author.bot) return;
-});
+	// Activity for the bot
+	client.user.setPresence({
+		activity: {
+			name: `"${prefix}help" for help!`,
+		},
+	});
 
-client.login(process.env.token);
+
+	client.on('message', message => {
+		if(!message.content.startsWith(prefix) || message.author.bot) return;
+	});
+
+	client.login(process.env.token);
+}
