@@ -36,10 +36,10 @@ client.on('ready', async () => {
 		  const option = require(path.join(__dirname, dir, file));
 		  commandBase(client, option);
 		}
+	  };
 
-		readCommands('commands');
+readCommands('commands');
 
-}});
 
 // Activity for the bot
 client.user.setPresence({

@@ -1,19 +1,23 @@
 const mongo = require('../../mongo');
-const ms = require('parse-ms');
-const economy = require('../../economy');
+const profileSchema = require('../../schemas');
 
 module.exports = {
 	commands: ['daily'],
 
 	callback: async (message, args, text) => {
-
-		const user = message.author;
 		const amount = 10;
+		const connectToMongoDB = async () => {
+			await mongo().then(async (mongoose) => {
+				try {
+					console.log('Connected to mongodb!');
+				} finally {
+					mongoose.connection.close();
+				}
+			});
+		};
 
-		if (user) {
-			await economy.addCoins('test'), amount;
+		connectToMongoDB();
 
-		}
 
 		// const timeout = 86400000;
 		// const amount = 10;
