@@ -30,3 +30,4 @@ if (talkedRecently.has(msg.author.id)) {
   }
 }
     }
+  }

@@ -4,9 +4,12 @@ module.exports = {
 	permissionError: '',
 	minArgs: 0,
 	maxArgs: 0,
-	callback: (message, args, text) => {
-		message.reply('Pong!')
-	},
 	permissions: [],
 	requiredRoles: [],
+	callback: (message, args, text) => {
+		message.reply('Pinging...')
+		.then((msg) => {
+			msg.edit("Pong! " + (Date.now() - msg.createdTimestamp))
+	});
+}
 }

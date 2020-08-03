@@ -12,7 +12,8 @@
     "eslint": "^7.5.0",
     "fs": "0.0.1-security",
     "mongoose": "^5.9.26",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "parse-ms": "^2.1.0"
   },
   "devDependencies": {},
   "repository": {
