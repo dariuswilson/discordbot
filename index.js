@@ -28,7 +28,7 @@ client.on('ready', async () => {
 	const readCommands = (dir) => {
 	  // eslint-disable-next-line no-mixed-spaces-and-tabs
 	  const files = fs.readdirSync(path.join(__dirname, dir));
-		//   for (const file of files) {
+		for (const file of files) {
 		const stat = fs.lstatSync(path.join(__dirname, dir, file));
 		if (stat.isDirectory()) {
 		  readCommands(path.join(dir, file));
@@ -36,7 +36,7 @@ client.on('ready', async () => {
 		  const option = require(path.join(__dirname, dir, file));
 		  commandBase(client, option);
 	}}
-};
+}}
 
 	readCommands('commands');
 
