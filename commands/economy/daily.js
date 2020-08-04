@@ -1,5 +1,5 @@
 const mongo = require('../../mongo');
-const profileSchema = require('../../schemas');
+const profileSchema = require('../../schemas/profile-schema');
 
 module.exports = {
 	commands: ['daily'],
