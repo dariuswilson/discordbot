@@ -41,12 +41,6 @@ client.on('ready', async () => {
 	readCommands('commands');
 
 });
-// Activity for the bot
-client.user.setPresence({
-	activity: {
-		name: `"${prefix}help" for help!`,
-	},
-});
 
 
 client.on('message', message => {
@@ -54,3 +48,9 @@ client.on('message', message => {
 });
 
 client.login(process.env.token);
+// Activity for the bot
+client.user.setPresence({
+	activity: {
+		name: `"${prefix}help" for help!`,
+	},
+});
