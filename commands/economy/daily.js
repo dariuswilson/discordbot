@@ -6,11 +6,13 @@ module.exports = {
 
 	callback: async (message, args, text) => {
 		const amount = 10;
+		const found = await profileSchema.findOne(userId: user);
 		await mongo().then(async (mongoose) => {
 			try {
 				console.log('Connected to mongodb!');
 				if (message.author) {
 					message.channel.send(`You have recieved your daily amount of {amount}`);
+				console.log(found)
 				}
 			} finally {
 				mongoose.connection.close();
