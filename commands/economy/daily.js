@@ -9,6 +9,7 @@ module.exports = {
 		await mongo().then(async (mongoose) => {
 			try {
 				console.log('Connected to mongodb!');
+				const user = message.author.id
 				const found = await profileSchema.findOne({ userId: user });
 				if (message.author) {
 					message.channel.send('You have recieved your daily amount of {amount}');
