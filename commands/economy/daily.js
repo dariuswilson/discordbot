@@ -6,10 +6,10 @@ module.exports = {
 
 	callback: async (message, args, text) => {
 		const amount = 10;
-		const found = await profileSchema.findOne(userId: user);
 		await mongo().then(async (mongoose) => {
 			try {
 				console.log('Connected to mongodb!');
+				const found = await profileSchema.findOne(userId: user);
 				if (message.author) {
 					message.channel.send(`You have recieved your daily amount of {amount}`);
 				console.log(found)
@@ -18,6 +18,8 @@ module.exports = {
 				mongoose.connection.close();
 			}
 		});
+	},
+};
 
 
 		// const timeout = 86400000;
@@ -34,5 +36,3 @@ module.exports = {
 
 		// 	message.channel.send(`Successfully added ${amount} of coins to your account!`);
 		// }
-	},
-};
