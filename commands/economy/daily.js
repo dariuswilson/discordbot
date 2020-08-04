@@ -9,6 +9,9 @@ module.exports = {
 		await mongo().then(async (mongoose) => {
 			try {
 				console.log('Connected to mongodb!');
+				if (message.author) {
+					message.channel.send(`You have recieved your daily amount of {amount}`);
+				}
 			} finally {
 				mongoose.connection.close();
 			}
