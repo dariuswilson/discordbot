@@ -10,7 +10,7 @@ module.exports = {
 			try {
 				const user = message.author.id;
 				console.log('Connected to mongodb!');
-				const storeddate = await profileSchema.findOne({userId : user}, {rundate:1, _id:0});
+				const storeddate = await profileSchema.findOne({userId : user}, {_id:0 });
 				const Tdate = new Date(); // Don't worry about this for now, I'll explain later.
 				const tdm = Tdate.getTime();
 				console.log(storeddate)
