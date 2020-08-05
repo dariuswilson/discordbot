@@ -10,10 +10,9 @@ module.exports = {
 			try {
 				const user = message.author.id;
 				console.log('Connected to mongodb!');
-				const storeddate = await profileSchema.findOne({ userId : user }, 'rundate'); // Don't worry about rundate for now, I'll explain later.
+				const storeddate = await profileSchema.findOne({userId : user}, {rundate:1, _id:0});
 				const Tdate = new Date(); // Don't worry about this for now, I'll explain later.
 				const tdm = Tdate.getTime();
-				console.log(storeddate);
 				if (!storeddate) {
 					await economy.dailyCoins(user, 10, Tdate); // Don't worry about Tdate, I'll explain later.
 					message.channel.send('You have received your daily amount of 10 coins! Please try again in 24 hours.');
