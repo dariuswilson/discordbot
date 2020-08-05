@@ -13,6 +13,7 @@ module.exports = {
 				const storeddate = await profileSchema.findOne({ userId : user }, 'rundate'); // Don't worry about rundate for now, I'll explain later.
 				const Tdate = new Date(); // Don't worry about this for now, I'll explain later.
 				const tdm = Tdate.getTime();
+				console.log(storeddate);
 				if (!storeddate) {
 					await economy.dailyCoins(user, 10, Tdate); // Don't worry about Tdate, I'll explain later.
 					message.channel.send('You have received your daily amount of 10 coins! Please try again in 24 hours.');
