@@ -73,7 +73,7 @@ module.exports.getCoins = async (userId) => {
 	});
 };
 
-module.exports.dailyCoins = async (userId, coins, date) => {
+module.exports.dailyCoins = async (userId, coins, rundate) => {
 	return await mongo().then(async (mongoose) => {
 		try {
 			console.log('Running findOneAndUpdate()');
@@ -87,7 +87,7 @@ module.exports.dailyCoins = async (userId, coins, date) => {
 					$inc: {
 						coins,
 					},
-					date,
+					rundate,
 				},
 				{
 					upsert: true,
