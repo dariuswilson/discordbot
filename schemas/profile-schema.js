@@ -11,6 +11,9 @@ const profileSchema = mongoose.Schema({
 		type: Number,
 		required: true,
 	},
+	rundate: {
+		type: Date,
+	},
 });
 
 module.exports = mongoose.model('profiles', profileSchema);

@@ -1,39 +1,35 @@
 const mongo = require('../../mongo');
 const profileSchema = require('../../schemas/profile-schema');
+const economy = require('../../economy'); // We need this to add coins.
 
 module.exports = {
 	commands: ['daily'],
-
 	callback: async (message, args, text) => {
 		const amount = 10;
 		await mongo().then(async (mongoose) => {
 			try {
+				const user = message.author.id;
 				console.log('Connected to mongodb!');
-				const user = message.author.id
-				const found = await profileSchema.findOne({ userId: user });
-				if (message.author) {
-					message.channel.send('You have recieved your daily amount of {amount}');
-					console.log(found);
+				const storeddate = await profileSchema.findOne({ userId : user }, 'rundate'); // Don't worry about rundate for now, I'll explain later.
+				const sdm = storeddate.getTime() + 86400000;
+				const Tdate = new Date(); // Don't worry about this for now, I'll explain later.
+				const tdm = Tdate.getTime();
+				if (!storeddate) {
+					await economy.dailyCoins(user, 10, Tdate); // Don't worry about Tdate, I'll explain later.
+					message.channel.send('You have received your daily amount of 10 coins! Please try again in 24 hours.');
+					return;
+				}
+				if (tdm >= sdm) {
+					await economy.dailyCoins(user, 10, Tdate); // Don't worry about Tdate, I'll explain later.
+					message.channel.send('You have received your daily amount of 10 coins! Please try again in 24 hours.');
+					return;
+				} else {
+					return message.channel.send('Please wait for a full 24 hours before running this command again.');
 				}
 			} finally {
 				mongoose.connection.close();
 			}
 		});
+
 	},
 };
-
-
-// const timeout = 86400000;
-// const amount = 10;
-// const daily = await mongo.findOne()(`daily_${message.guild.id}_${message.author.id}`);
-
-// if(daily !== null && timeout - (Date.now () - daily) > 0) {
-// 	const time = ms(timeout - (Date.now() - daily));
-
-// 	return message.channel.send(`You've already collected your daily award. Come back in ${time.days}d, ${time.hours}h, ${time.minutes}m, and ${time.seconds}s`);
-// } else {
-// 	mongo.add(`money_${message.guild.id}_${message.author.id}`, amount);
-// 	mongo.set(`daily_${message.guild.id}_${message.author.id}`, Date.now());
-
-// 	message.channel.send(`Successfully added ${amount} of coins to your account!`);
-// }

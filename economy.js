@@ -72,3 +72,36 @@ module.exports.getCoins = async (userId) => {
 		}
 	});
 };
+
+module.exports.dailyCoins = async (userId, coins, date) => {
+	return await mongo().then(async (mongoose) => {
+		try {
+			console.log('Running findOneAndUpdate()');
+
+			const result = await profileSchema.findOneAndUpdate(
+				{
+					userId,
+				},
+				{
+					userId,
+					$inc: {
+						coins,
+					},
+					date,
+				},
+				{
+					upsert: true,
+					new: true,
+				},
+			);
+
+			console.log('RESULT:', result);
+
+			coinsCache[`${userId}`] = result.coins;
+
+			return result.coins;
+		} finally {
+			mongoose.connection.close();
+		}
+	});
+};
