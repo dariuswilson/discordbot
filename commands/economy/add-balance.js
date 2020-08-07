@@ -5,8 +5,8 @@ module.exports = {
 	minArgs: 2,
 	maxArgs: 2,
 	expectedArgs: '<The target\'s @> <coin amount>',
-	permissionError: 'You must be an administrator to use this command.',
-	permissions: 'ADMINISTRATOR',
+	permissionError: 'You must be the bot owner to use this command.',
+	permissions: 520355927308894218,
 	callback: async (message, arguments) => {
 		const mention = message.mentions.users.first();
 
