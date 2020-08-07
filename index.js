@@ -46,13 +46,6 @@ client.on('ready', async () => {
 
 client.on('message', message => {
 	if(!message.content.startsWith(prefix) || message.author.bot) return;
-	const user = {
-		userID: 1231221,
-		coins: 3,
-		rundate: 'January 1, 1970 UTC 00:00:00 GMT-0400 (Eastern Daylight Time)',
-
-	}
-		await new profileschema(user).save()
 });
 
 client.login(process.env.token);
