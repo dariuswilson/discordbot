@@ -1,4 +1,4 @@
-const mongoose = require('../mongo');
+const mongoose = require('mongoose');
 
 const commandPrefixSchema = mongoose.Schema({
 	// Guild ID
