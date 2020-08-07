@@ -114,7 +114,7 @@ module.exports = (client, commandOptions) => {
 
 				// Ensure t he user has not ran this command too frequently
 				// userId-command
-				const cooldownString = `${guild.id}-${member.id}-${commands[0]}`;
+				const cooldownString = `${member.id}-${commands[0]}`;
 				if(cooldown > 0 && recentlyRan.includes(cooldownString)) {
 					message.reply('Please wait for a full 24 hours before running this command again.');
 					return;
