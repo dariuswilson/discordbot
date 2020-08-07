@@ -4,7 +4,7 @@ const economy = require('../../economy'); // We need this to add coins.
 
 module.exports = {
 	commands: ['daily'],
-	cooldown: 60 * 1440,
+	cooldown: 86400,
 	callback: async (message, args, text) => {
 		await mongo().then(async (mongoose) => {
 			try {
