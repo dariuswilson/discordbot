@@ -5,8 +5,6 @@ module.exports = {
 	minArgs: 2,
 	maxArgs: 2,
 	expectedArgs: '<The target\'s @> <coin amount>',
-	permissionError: 'You must be the bot owner to use this command.',
-	permissions: 520355927308894218,
 	callback: async (message, arguments) => {
 		const mention = message.mentions.users.first();
 
@@ -20,6 +18,10 @@ module.exports = {
 			message.reply('Please provide a valid numnber of coins.');
 			return;
 		}
+
+		if (message.author.id !== 520355927308894218)
+		{return;}
+		message.channel.send('You must be the bot owner to use this command.');
 
 		const userId = mention.id;
 
