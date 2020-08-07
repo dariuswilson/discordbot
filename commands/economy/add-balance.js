@@ -19,7 +19,8 @@ module.exports = {
 			return;
 		}
 
-		if (message.author.id !== 520355927308894218) return message.channel.send('You must be the bot owner to use this command');
+		if (message.author.id !== '520355927308894218') return message.channel.send('You must be the bot owner to use this command');
+
 		const userId = mention.id;
 
 		const newCoins = await economy.addCoins(userId, coins);
