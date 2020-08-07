@@ -1,4 +1,8 @@
 const { prefix } = require('../config.json');
+const commandPrefixSchema = require('../schemas/command-prefix-schema');
+const mongo = require('../mongo');
+const { prefix: globalPrefix } = require('../config.json');
+const guildPrefixes = {}; // { 'guildId' : 'prefix' }
 
 const validatePermissions = (permissions) => {
 	const validPermissions = [
@@ -110,7 +114,7 @@ module.exports = (client, commandOptions) => {
 
 				// Ensure t he user has not ran this command too frequently
 				// userId-command
-				let cooldownString = `${guild.id}-${member.id}-${commands[0]}`;
+				const cooldownString = `${guild.id}-${member.id}-${commands[0]}`;
 				if(cooldown > 0 && recentlyRan.includes(cooldownString)) {
 					message.reply('Please wait for a full 24 hours before running this command again.');
 					return;
@@ -150,6 +154,31 @@ module.exports = (client, commandOptions) => {
 
 				return;
 			}
+		}
+	});
+};
+
+/**
+ * I forgot to add this function to the video.
+ * It updates the cache when the !setprefix command is ran.
+ */
+module.exports.updateCache = (guildId, newPrefix) => {
+	guildPrefixes[guildId] = newPrefix;
+};
+
+module.exports.loadPrefixes = async (client) => {
+	await mongo().then(async (mongoose) => {
+		try {
+			for (const guild of client.guilds.cache) {
+				const guildId = guild[1].id;
+
+				const result = await commandPrefixSchema.findOne({ _id: guildId });
+				guildPrefixes[guildId] = result ? result.prefix : globalPrefix;
+			}
+
+			console.log(guildPrefixes);
+		} finally {
+			mongoose.connection.close();
 		}
 	});
 };

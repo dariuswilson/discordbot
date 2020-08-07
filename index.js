@@ -16,7 +16,7 @@ const commandBase = require('./commands/command-base');
 client.on('ready', async () => {
 	console.log('The client is ready!');
 
-	commandBase.loadprefix(client);
+	commandBase.loadPrefixes(client);
 });
 
 
