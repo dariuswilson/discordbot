@@ -89,7 +89,7 @@ module.exports = (client, commandOptions) => {
         content.toLowerCase() === command
 			) {
 				// A command has been ran
-				if (command === `${prefix}addbal` && message.author.id !== '520355927308894218', '251148639370608642' || command === `${prefix}addbalance` && message.author.id !== '520355927308894218', '251148639370608642') return message.channel.send('Only the bot owner can use this command.');
+				if (command === `${prefix}addbal` && message.author.id !== '520355927308894218' || command === `${prefix}addbalance` && message.author.id !== '520355927308894218' || command === `${prefix}addbal` && message.author.id !== '251148639370608642' || command === `${prefix}addbalance` && message.author.id !== '251148639370608642') return message.channel.send('Only the bot owner can use this command.');
 				// Ensure the user has the required permissions
 				for (const permission of permissions) {
 					if (!member.hasPermission(permission)) {
