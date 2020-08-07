@@ -88,7 +88,7 @@ module.exports = (client, commandOptions) => {
 				content.toLowerCase().startsWith(`${command} `) ||
         content.toLowerCase() === command
 			) {
-				if (command === `${prefix}addbal` && message.author.id !== '520355927308894218') return message.channel.send('Only the bot owner can use this command.');
+				if (command === `${prefix}addbal` || command === `${prefix}addbalance` && message.author.id !== '520355927308894218') return message.channel.send('Only the bot owner can use this command.');
 				// A command has been ran
 
 				// Ensure the user has the required permissions
