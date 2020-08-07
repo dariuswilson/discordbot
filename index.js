@@ -2,13 +2,8 @@
 // PACKAGES AND FILES
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const botsettings = require('./config.json');
-const fs = require('fs');
-const { prefix } = require('./config.json');
-const { brotliCompress } = require('zlib');
-const nodemon = require('nodemon');
 client.commands = new Discord.Collection();
-const path = require('path');
+const loadCommands = require('./commands/load-commands')
 const commandBase = require('./commands/command-base');
 
 
@@ -17,6 +12,7 @@ client.on('ready', async () => {
 	console.log('The client is ready!');
 
 	commandBase.loadPrefixes(client);
+	loadCommands(client);
 });
 
 
